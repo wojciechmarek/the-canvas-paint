@@ -1,0 +1,33 @@
+{
+  "name": "the-canvas-paint-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/the-canvas-paint-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/the-canvas-paint-e2e/cypress.config.ts",
+        "devServerTarget": "the-canvas-paint:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "the-canvas-paint:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "the-canvas-paint:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/the-canvas-paint-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["the-canvas-paint"]
+}

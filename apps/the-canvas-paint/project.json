@@ -1,0 +1,78 @@
+{
+  "name": "the-canvas-paint",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/the-canvas-paint/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/the-canvas-paint"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "the-canvas-paint:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "the-canvas-paint:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "the-canvas-paint:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "the-canvas-paint:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "the-canvas-paint:build:development"
+        },
+        "production": {
+          "buildTarget": "the-canvas-paint:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/apps/the-canvas-paint"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/the-canvas-paint"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/the-canvas-paint/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "the-canvas-paint:build"
+      }
+    }
+  },
+  "tags": []
+}
