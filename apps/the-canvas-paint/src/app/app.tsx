@@ -1,16 +1,15 @@
-import styled from '@emotion/styled';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
-import NxWelcome from './nx-welcome';
-
-const StyledApp = styled.div`
-  // Your style here
-`;
+import './app.styles.css';
 
 export function App() {
   return (
-    <StyledApp>
-      <NxWelcome title="the-canvas-paint" />
-    </StyledApp>
+    <div>
+      <h1>Welcome to the-canvas-paint!</h1>
+    </div>
   );
 }
 
