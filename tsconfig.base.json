@@ -14,7 +14,15 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@the-canvas-paint/feature/layout": ["libs/feature/layout/src/index.ts"],
+      "@the-canvas-paint/feature/top-menu": [
+        "libs/feature/top-menu/src/index.ts"
+      ],
+      "@the-canvas-paint/ui/atoms": ["libs/ui/atoms/src/index.ts"],
+      "@the-canvas-paint/ui/molecules": ["libs/ui/molecules/src/index.ts"],
+      "@the-canvas-paint/ui/organisms": ["libs/ui/organisms/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
