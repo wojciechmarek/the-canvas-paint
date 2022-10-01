@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import UiOrganisms from './ui-organisms';
+import FeatureCanvas from './feature-canvas';
 
-describe('UiOrganisms', () => {
+describe('FeatureCanvas', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<UiOrganisms />);
+    const { baseElement } = render(<FeatureCanvas />);
     expect(baseElement).toBeTruthy();
   });
 });

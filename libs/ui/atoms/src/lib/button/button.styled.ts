@@ -1,4 +1,7 @@
-import styled from "@emotion/styled";
-import { Button } from "./button";
+import { Button, styled } from "@mui/material";
 
-export const MaterialButton = styled(Button)``;
+export const MaterialButton = styled(Button)`
+  color: black;
+  font-weight: bold;
+  text-transform: none;
+`;

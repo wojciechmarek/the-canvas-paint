@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import UiMolecules from './ui-molecules';
+import { IconButton } from './icon-button';
 
-describe('UiMolecules', () => {
+describe('Atoms - Button', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<UiMolecules />);
+    const { baseElement } = render(<IconButton></IconButton>);
     expect(baseElement).toBeTruthy();
   });
 });
