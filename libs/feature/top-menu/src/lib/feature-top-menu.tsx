@@ -28,15 +28,6 @@ export function TopMenu(props: TopMenuProps) {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        The Canvas Paint
-      </Button>
-      <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
         File
       </Button>
       <Button

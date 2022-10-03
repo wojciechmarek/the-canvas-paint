@@ -15,17 +15,17 @@ import { ColorsMenu } from '@the-canvas-paint/feature/colors-menu';
 export interface FeatureLayoutProps {}
 
 const LayoutContainer = styled(Stack)``;
-const ToolBoxAndCanvasContainer = styled(Stack)``;
+const TopMenuCanvasColorsMenuContainer = styled(Stack)``;
 
 export function Layout(props: FeatureLayoutProps) {
   return (
-    <LayoutContainer height={'100vh'}>
-      <TopMenu />
-      <ToolBoxAndCanvasContainer direction="row" flex={1}>
-        <ToolBoxMenu />
+    <LayoutContainer height={'100vh'} direction="row">
+      <ToolBoxMenu />
+      <TopMenuCanvasColorsMenuContainer flex={1}>
+        <TopMenu />
         <Canvas />
-      </ToolBoxAndCanvasContainer>
-      <ColorsMenu />
+        <ColorsMenu />
+      </TopMenuCanvasColorsMenuContainer>
 
     </LayoutContainer>
   );

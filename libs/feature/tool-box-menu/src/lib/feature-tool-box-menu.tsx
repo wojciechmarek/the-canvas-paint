@@ -5,8 +5,9 @@ import { Box } from '@the-canvas-paint/ui/atoms';
 export interface ToolBoxMenuProps {}
 
 const ToolBoxMenuContainer = styled(Box)`
-  width: 200px;
+  width: 100px;
   border-right: 1px solid black;
+  padding-top: 30px;
 `
 
 export function ToolBoxMenu(props: ToolBoxMenuProps) {
