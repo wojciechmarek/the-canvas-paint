@@ -1,27 +1,53 @@
-import { Menu, MenuItem, styled } from '@mui/material';
-import { Box, Button } from '@the-canvas-paint/ui/atoms';
+import { Box, Button, Menu, MenuItem, styled } from '@mui/material';
 import { useState } from 'react';
 
 /* eslint-disable-next-line */
 export interface TopMenuProps {}
 
 const TopMenuContainer = styled(Box)`
-  border-bottom: 1px solid black;
+  background-color:#1A181B;
+  padding: 0 10px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const MenuButton = styled(Button)`
+  color: white;
+  text-transform: none;
+`;
+
+const AppNameMenuButton = styled(Button)`
+  color: white;
+  text-transform: none;
+  font-weight: bold;
 `;
 
 export function TopMenu(props: TopMenuProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   return (
     <TopMenuContainer>
-      <Button
+      <AppNameMenuButton
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        The Canvas Paint
+      </AppNameMenuButton>
+      <MenuButton
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -29,8 +55,8 @@ export function TopMenu(props: TopMenuProps) {
         onClick={handleClick}
       >
         File
-      </Button>
-      <Button
+      </MenuButton>
+      <MenuButton
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -38,8 +64,8 @@ export function TopMenu(props: TopMenuProps) {
         onClick={handleClick}
       >
         Edit
-      </Button>
-      <Button
+      </MenuButton>
+      <MenuButton
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -47,8 +73,8 @@ export function TopMenu(props: TopMenuProps) {
         onClick={handleClick}
       >
         Insert
-      </Button>
-      <Button
+      </MenuButton>
+      <MenuButton
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -56,8 +82,8 @@ export function TopMenu(props: TopMenuProps) {
         onClick={handleClick}
       >
         Tools
-      </Button>
-      <Button
+      </MenuButton>
+      <MenuButton
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -65,8 +91,8 @@ export function TopMenu(props: TopMenuProps) {
         onClick={handleClick}
       >
         Window
-      </Button>
-      <Button
+      </MenuButton>
+      <MenuButton
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
@@ -74,7 +100,7 @@ export function TopMenu(props: TopMenuProps) {
         onClick={handleClick}
       >
         Help
-      </Button>
+      </MenuButton>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

@@ -1,19 +1,28 @@
 import styled from '@emotion/styled';
-import { Box } from '@the-canvas-paint/ui/atoms';
+import { Box, Typography } from '@mui/material';
 
 /* eslint-disable-next-line */
 export interface ToolBoxMenuProps {}
 
 const ToolBoxMenuContainer = styled(Box)`
-  width: 100px;
-  border-right: 1px solid black;
-  padding-top: 30px;
+  width: 200px;
+  background-color: #252327;
+`
+
+const SelectedToolText = styled(Typography)`
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px;
+  font-weight: bold;
 `
 
 export function ToolBoxMenu(props: ToolBoxMenuProps) {
   return (
-    <ToolBoxMenuContainer>
-      <p>Toolbox</p>
+    <ToolBoxMenuContainer height={'100%'}>
+      <SelectedToolText>
+        Brush
+      </SelectedToolText>
     </ToolBoxMenuContainer>
   );
 }

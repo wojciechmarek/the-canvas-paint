@@ -1,5 +1,5 @@
 {
-  "name": "@the-canvas-paint/ui/atoms",
+  "name": "@the-canvas-paint/feature/bottom-menu",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",

@@ -1,11 +1,11 @@
 /* eslint-disable */
 export default {
-  displayName: 'feature-colors-menu',
+  displayName: 'feature-bottom-menu',
   preset: '../../../jest.preset.js',
   transform: {
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',
     '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['@nx/react/babel'] }],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../coverage/libs/feature/colors-menu',
+  coverageDirectory: '../../../coverage/libs/feature/bottom-menu',
 };

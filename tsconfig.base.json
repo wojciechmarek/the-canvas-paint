@@ -15,10 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@the-canvas-paint/feature/canvas": ["libs/feature/canvas/src/index.ts"],
-      "@the-canvas-paint/feature/colors-menu": [
-        "libs/feature/colors-menu/src/index.ts"
+      "@the-canvas-paint/feature/bottom-menu": [
+        "libs/feature/bottom-menu/src/index.ts"
       ],
+      "@the-canvas-paint/feature/canvas": ["libs/feature/canvas/src/index.ts"],
       "@the-canvas-paint/feature/layout": ["libs/feature/layout/src/index.ts"],
       "@the-canvas-paint/feature/tool-box-menu": [
         "libs/feature/tool-box-menu/src/index.ts"
@@ -26,7 +26,6 @@
       "@the-canvas-paint/feature/top-menu": [
         "libs/feature/top-menu/src/index.ts"
       ],
-      "@the-canvas-paint/ui/atoms": ["libs/ui/atoms/src/index.ts"],
       "@the-canvas-paint/ui/molecules": ["libs/ui/molecules/src/index.ts"],
       "@the-canvas-paint/ui/organisms": ["libs/ui/organisms/src/index.ts"]
     }
