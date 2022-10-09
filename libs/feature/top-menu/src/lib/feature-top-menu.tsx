@@ -1,4 +1,13 @@
-import { Menu, MenuItem, MenuList, Paper } from '@mui/material';
+import {
+  Box,
+  Divider,
+  ListItemText,
+  Menu,
+  MenuItem,
+  MenuList,
+  Paper,
+  Typography,
+} from '@mui/material';
 import { useState } from 'react';
 import { MenuButton, TopMenuContainer } from './feature-top-menu.styled';
 
@@ -15,10 +24,15 @@ const menuItems = [
       {
         id: 'preferences',
         text: 'Preferences',
+        shortcut: '⌘,',
+      },
+      {
+        id: 'divider',
       },
       {
         id: 'quit',
         text: 'Quit',
+        shortcut: '⌘Q',
       },
     ],
   },
@@ -30,18 +44,33 @@ const menuItems = [
       {
         id: 'new',
         text: 'New',
+        shortcut: '⌘N',
       },
       {
         id: 'open',
         text: 'Open',
+        shortcut: '⌘O',
+      },
+      {
+        id: 'divider',
       },
       {
         id: 'save',
         text: 'Save',
+        shortcut: '⌘S',
       },
       {
         id: 'save-as',
         text: 'Save As',
+        shortcut: '⌘⇧S',
+      },
+      {
+        id: 'divider',
+      },
+      {
+        id: 'print',
+        text: 'Print',
+        shortcut: '⌘P',
       },
     ],
   },
@@ -53,14 +82,17 @@ const menuItems = [
       {
         id: 'cut',
         text: 'Cut',
+        shortcut: '⌘X',
       },
       {
         id: 'copy',
         text: 'Copy',
+        shortcut: '⌘C',
       },
       {
         id: 'paste',
         text: 'Paste',
+        shortcut: '⌘V',
       },
     ],
   },
@@ -72,18 +104,67 @@ const menuItems = [
       {
         id: 'pen',
         text: 'Pen',
+        shortcut: 'P',
       },
       {
         id: 'brush',
         text: 'Brush',
+        shortcut: 'B',
       },
       {
         id: 'spray',
         text: 'Spray',
+        shortcut: 'S',
+      },
+      {
+        id: 'blur',
+        text: 'Blur',
+        shortcut: 'U',
       },
       {
         id: 'eraser',
         text: 'Eraser',
+        shortcut: 'E',
+      },
+    ],
+  },
+  {
+    id: 'image',
+    text: 'Image',
+    isBold: false,
+    subMenuItems: [
+      {
+        id: 'rotate-right',
+        text: 'Rotate right',
+        shortcut: '⌘R',
+      },
+      {
+        id: 'rotate-left',
+        text: 'Rotate left',
+        shortcut: '⌘⇧R',
+      },
+      {
+        id: 'flip-horizontal',
+        text: 'Flip horizontal',
+        shortcut: '⌘H',
+      },
+      {
+        id: 'flip-vertical',
+        text: 'Flip vertical',
+        shortcut: '⌘⇧H',
+      },
+      {
+        id: 'divider',
+      },
+      {
+        id: 'resize',
+        text: 'Resize',
+        shortcut: '⌘⇧I',
+      },
+      {
+        id: 'crop',
+        text: 'Crop',
+        shortcut: '⌘⇧C',
       },
     ],
   },
@@ -101,8 +182,11 @@ const menuItems = [
         text: 'Privacy',
       },
       {
+        id: 'divider',
+      },
+      {
         id: 'github',
-        text: 'Github',
+        text: 'Github documentation',
       },
     ],
   },
@@ -112,19 +196,34 @@ const menuItems = [
 export interface TopMenuProps {}
 
 export function TopMenu(props: TopMenuProps) {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const [openedMenuId, setOpenedMenuId] = useState<string>('');
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log('handleClick', event.currentTarget);
-
-    setAnchorEl(event.currentTarget);
+  const handleTopMenuItemClick = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    setAnchorElement(event.currentTarget);
     setOpenedMenuId(event.currentTarget.id);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleSubMenuItemClose = (subMenuItemId: string) => {
+    setAnchorElement(null);
     setOpenedMenuId('');
+    console.log(`Sub menu item ${subMenuItemId} clicked`);
+
+    switch (subMenuItemId) {
+      case 'license':
+        window.open('https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt', '_blank');
+        break;
+
+      case 'github':
+        window.open('https://www.github.com', '_blank');
+        break;
+
+      default:
+        break;
+    }
+
   };
 
   return (
@@ -139,29 +238,37 @@ export function TopMenu(props: TopMenuProps) {
             }
             aria-haspopup="true"
             aria-expanded={openedMenuId === menuItem.id ? 'true' : undefined}
-            onClick={handleClick}
+            onClick={handleTopMenuItemClick}
             isBold={menuItem.isBold}
           >
             {menuItem.text}
           </MenuButton>
           <Menu
             id={menuItem.id}
-            anchorEl={anchorEl}
+            anchorEl={anchorElement}
             open={openedMenuId === menuItem.id}
-            onClose={handleClose}
+            onClose={handleSubMenuItemClose}
             MenuListProps={{
               'aria-labelledby': menuItem.id,
             }}
           >
-            <Paper sx={{ width: 320, maxWidth: '100%' }}>
-              <MenuList>
-                {menuItem.subMenuItems.map((subMenuItem) => (
-                  <MenuItem key={subMenuItem.id} onClick={handleClose}>
-                    {subMenuItem.text}
+            <MenuList sx={{ width: 320, maxWidth: '100%' }}>
+              {menuItem.subMenuItems.map((subMenuItem) =>
+                subMenuItem.id === 'divider' ? (
+                  <Divider />
+                ) : (
+                  <MenuItem
+                    key={subMenuItem.id}
+                    onClick={() => handleSubMenuItemClose(subMenuItem.id)}
+                  >
+                    <ListItemText>{subMenuItem.text}</ListItemText>
+                    <Typography variant="body2" color="text.secondary">
+                      {subMenuItem.shortcut}
+                    </Typography>
                   </MenuItem>
-                ))}
-              </MenuList>
-            </Paper>
+                )
+              )}
+            </MenuList>
           </Menu>
         </>
       ))}

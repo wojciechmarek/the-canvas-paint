@@ -26,10 +26,10 @@ export function BottomMenu(props: BottomMenuProps) {
   return (
     <BottomMenuContainer>
       <MenuButton>P</MenuButton>
-      <MenuButton>C</MenuButton>
       <MenuButton>B</MenuButton>
+      <MenuButton>S</MenuButton>
       <MenuButton>U</MenuButton>
-      <MenuButton>K</MenuButton>
+      <MenuButton>E</MenuButton>
     </BottomMenuContainer>
   );
 }
