@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { Box, Typography } from '@mui/material';
+import { RootState } from '@the-canvas-paint/common/store';
+import { useSelector } from 'react-redux';
 
 /* eslint-disable-next-line */
 export interface ToolBoxMenuProps {}
@@ -18,10 +20,12 @@ const SelectedToolText = styled(Typography)`
 `
 
 export function ToolBoxMenu(props: ToolBoxMenuProps) {
+  const { selected } = useSelector((state: RootState) => state.tool);
+
   return (
     <ToolBoxMenuContainer height={'100%'}>
       <SelectedToolText>
-        Brush
+        {selected}
       </SelectedToolText>
     </ToolBoxMenuContainer>
   );
