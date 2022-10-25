@@ -6,11 +6,13 @@ export interface CanvasProps {}
 
 const CanvasContainer = styled(Box)`
   flex: 1;
+  background-color: #1E1E1E;
 `
 
 const CanvasArea = styled.canvas`
-  width: 100%;
-  height: 100%;
+  height: 480px;
+  width: 600px !important;
+  background-color: white;
 `
 
 export function Canvas(props: CanvasProps) {

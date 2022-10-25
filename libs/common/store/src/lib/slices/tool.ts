@@ -1,23 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export interface ToolState {
-  selected: 'pen' | 'brush' | 'blur' | 'spray' | 'eraser';
+  type: 'pen' | 'brush' | 'blur' | 'spray' | 'eraser';
+  color: string;
+  size: number;
+  softness: number;
 }
 
 const initialState: ToolState = {
-  selected: "pen",
+  type: "pen",
+  color: "#000000",
+  size: 10,
+  softness: 0,
 }
 
 export const toolSlice = createSlice({
   name: 'tool',
   initialState,
   reducers: {
-    setSelectedTool: (state, action) => {
-      state.selected = action.payload;
+    setToolType: (state, action) => {
+      state.type = action.payload;
     },
+    setToolColor: (state, action) => {
+      state.color = action.payload;
+    },
+    setToolSize: (state, action) => {
+      state.size = action.payload;
+    },
+    setToolSoftness: (state, action) => {
+      state.softness = action.payload;
+    }
   },
 })
 
-export const { setSelectedTool } = toolSlice.actions;
+export const { setToolType, setToolColor, setToolSize, setToolSoftness } = toolSlice.actions;
 
 export default toolSlice.reducer;

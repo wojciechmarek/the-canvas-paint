@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Box, ButtonBase } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { setSelectedTool } from '@the-canvas-paint/common/store';
+import { setToolType } from '@the-canvas-paint/common/store';
 
 /* eslint-disable-next-line */
 export interface BottomMenuProps {}
@@ -28,8 +28,8 @@ export function BottomMenu(props: BottomMenuProps) {
 
   const dispatch = useDispatch();
 
-  const handleBottomMenuItemClick = (item: string) => {
-    dispatch(setSelectedTool(item));
+  const handleBottomMenuItemClick = (type: string) => {
+    dispatch(setToolType(type));
   };
 
   return (

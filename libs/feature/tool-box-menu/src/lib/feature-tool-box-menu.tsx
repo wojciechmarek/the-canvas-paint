@@ -1,8 +1,21 @@
 import styled from '@emotion/styled';
 import { Box, ButtonBase, Slider, Typography } from '@mui/material';
-import { RootState } from '@the-canvas-paint/common/store';
+import { RootState, setToolColor, setToolSize, setToolSoftness } from '@the-canvas-paint/common/store';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+const colors = [
+  'red',
+  'blue',
+  'green',
+  'yellow',
+  'orange',
+  'purple',
+  'pink',
+  'brown',
+  'black',
+  'white',
+];
 
 /* eslint-disable-next-line */
 export interface ToolBoxMenuProps {}
@@ -59,12 +72,29 @@ const PreviewContainer = styled(Box)`
 `;
 
 export function ToolBoxMenu(props: ToolBoxMenuProps) {
+  const dispatch = useDispatch();
   const [selectedToolName, setSelectedToolName] = useState('');
+  const [isPaintingToolTypeSelected, setIsPaintingToolTypeSelected] =
+    useState(false);
 
-  const { selected } = useSelector((state: RootState) => state.tool);
+  const { type } = useSelector((state: RootState) => state.tool);
+
+  const handleColorClick = (color: string) => {
+    dispatch(setToolColor(color));
+  };
+
+  const handleSizeChange = (e: any, value: number | number[]) => {
+    dispatch(setToolSize(value as number));
+  };
+
+  const handleSoftnessChange = (e: any, value: number | number[]) => {
+    dispatch(setToolSoftness(value as number));
+  };
+
+
 
   useEffect(() => {
-    switch (selected) {
+    switch (type) {
       case 'pen':
         setSelectedToolName('Pen');
         break;
@@ -81,7 +111,10 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
         setSelectedToolName('Spray');
         break;
     }
-  }, [selected]);
+
+    const isPaintingToolTypeSelected = type !== 'eraser';
+    setIsPaintingToolTypeSelected(isPaintingToolTypeSelected);
+  }, [type]);
 
   return (
     <ToolBoxMenuContainer height={'100%'}>
@@ -89,30 +122,27 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
 
       <ToolPropertySection>
         <ToolPropertyTitle>Size:</ToolPropertyTitle>
-        <ToolPropertySlider />
+        <ToolPropertySlider onChange={handleSizeChange} />
       </ToolPropertySection>
 
-      {selected !== 'eraser' && (
+      {isPaintingToolTypeSelected && (
         <ToolPropertySection>
           <ToolPropertyTitle>Softness:</ToolPropertyTitle>
-          <ToolPropertySlider />
+          <ToolPropertySlider onChange={handleSoftnessChange} />
         </ToolPropertySection>
       )}
 
-      {selected !== 'eraser' && (
+      {isPaintingToolTypeSelected && (
         <ToolPropertySection>
           <ToolPropertyTitle>Colors:</ToolPropertyTitle>
           <ColorsContainer>
-            <ColorButtonBase style={{ backgroundColor: 'red' }} />
-            <ColorButtonBase style={{ backgroundColor: 'blue' }} />
-            <ColorButtonBase style={{ backgroundColor: 'green' }} />
-            <ColorButtonBase style={{ backgroundColor: 'yellow' }} />
-            <ColorButtonBase style={{ backgroundColor: 'orange' }} />
-            <ColorButtonBase style={{ backgroundColor: 'purple' }} />
-            <ColorButtonBase style={{ backgroundColor: 'pink' }} />
-            <ColorButtonBase style={{ backgroundColor: 'brown' }} />
-            <ColorButtonBase style={{ backgroundColor: 'black' }} />
-            <ColorButtonBase style={{ backgroundColor: 'white' }} />
+            {colors.map((color) => (
+              <ColorButtonBase
+                key={color}
+                style={{ backgroundColor: color }}
+                onClick={() => handleColorClick(color)}
+              />
+            ))}
           </ColorsContainer>
         </ToolPropertySection>
       )}
