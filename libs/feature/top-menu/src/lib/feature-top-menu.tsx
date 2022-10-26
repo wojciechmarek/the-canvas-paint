@@ -10,6 +10,8 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { MenuButton, TopMenuContainer } from './feature-top-menu.styled';
+import { useDispatch } from 'react-redux';
+import { setToolType } from '@the-canvas-paint/common/store';
 
 const menuItems = [
   {
@@ -196,6 +198,8 @@ const menuItems = [
 export interface TopMenuProps {}
 
 export function TopMenu(props: TopMenuProps) {
+  const dispatch = useDispatch();
+
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const [openedMenuId, setOpenedMenuId] = useState<string>('');
 
@@ -218,6 +222,26 @@ export function TopMenu(props: TopMenuProps) {
 
       case 'github':
         window.open('https://www.github.com', '_blank');
+        break;
+
+      case 'brush':        
+        dispatch(setToolType('brush'));
+        break;
+
+      case 'pen':
+        dispatch(setToolType('pen'));
+        break;
+      
+      case 'spray':
+        dispatch(setToolType('spray'));
+        break;
+
+      case 'blur':
+        dispatch(setToolType('blur'));
+        break;
+
+      case 'eraser':
+        dispatch(setToolType('eraser'));
         break;
 
       default:
