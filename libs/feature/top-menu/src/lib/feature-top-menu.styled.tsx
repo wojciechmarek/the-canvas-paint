@@ -11,11 +11,11 @@ export const TopMenuContainer = styled(Box)`
 `;
 
 export const MenuButton = styled(Button)<{
-  isBold: boolean;
+  isbold: string;
 }>`
   color: white;
   text-transform: none;
-  font-weight: ${(props) => (props.isBold ? "bold" : "normal")};
+  font-weight: ${(props) => (props.isbold === "true" ? "bold" : "normal")};
 `;
 
 

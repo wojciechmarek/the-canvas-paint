@@ -8,7 +8,7 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { MenuButton, TopMenuContainer } from './feature-top-menu.styled';
 import { useDispatch } from 'react-redux';
 import { setToolType } from '@the-canvas-paint/common/store';
@@ -17,7 +17,7 @@ const menuItems = [
   {
     id: 'app-name',
     text: 'The Canvas Paint',
-    isBold: true,
+    isbold: true,
     subMenuItems: [
       {
         id: 'about',
@@ -41,7 +41,7 @@ const menuItems = [
   {
     id: 'file',
     text: 'File',
-    isBold: false,
+    isbold: false,
     subMenuItems: [
       {
         id: 'new',
@@ -79,7 +79,7 @@ const menuItems = [
   {
     id: 'edit',
     text: 'Edit',
-    isBold: false,
+    isbold: false,
     subMenuItems: [
       {
         id: 'cut',
@@ -101,7 +101,7 @@ const menuItems = [
   {
     id: 'tools',
     text: 'Tools',
-    isBold: false,
+    isbold: false,
     subMenuItems: [
       {
         id: 'pen',
@@ -133,7 +133,7 @@ const menuItems = [
   {
     id: 'image',
     text: 'Image',
-    isBold: false,
+    isbold: false,
     subMenuItems: [
       {
         id: 'rotate-right',
@@ -173,7 +173,7 @@ const menuItems = [
   {
     id: 'help',
     text: 'Help',
-    isBold: false,
+    isbold: false,
     subMenuItems: [
       {
         id: 'license',
@@ -252,8 +252,8 @@ export function TopMenu(props: TopMenuProps) {
 
   return (
     <TopMenuContainer>
-      {menuItems.map((menuItem) => (
-        <>
+      {menuItems.map((menuItem, key) => (
+        <Fragment key={`${menuItem.id}-${key}`}>
           <MenuButton
             key={menuItem.id}
             id={menuItem.id}
@@ -263,7 +263,7 @@ export function TopMenu(props: TopMenuProps) {
             aria-haspopup="true"
             aria-expanded={openedMenuId === menuItem.id ? 'true' : undefined}
             onClick={handleTopMenuItemClick}
-            isBold={menuItem.isBold}
+            isbold={menuItem.isbold.toString()}
           >
             {menuItem.text}
           </MenuButton>
@@ -277,9 +277,9 @@ export function TopMenu(props: TopMenuProps) {
             }}
           >
             <MenuList sx={{ width: 320, maxWidth: '100%' }}>
-              {menuItem.subMenuItems.map((subMenuItem) =>
+              {menuItem.subMenuItems.map((subMenuItem, key) =>
                 subMenuItem.id === 'divider' ? (
-                  <Divider />
+                  <Divider key={`${subMenuItem.id}-${key}`} />
                 ) : (
                   <MenuItem
                     key={subMenuItem.id}
@@ -294,7 +294,7 @@ export function TopMenu(props: TopMenuProps) {
               )}
             </MenuList>
           </Menu>
-        </>
+        </Fragment>
       ))}
     </TopMenuContainer>
   );
