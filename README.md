@@ -8,7 +8,7 @@ To practice the usage of canvas HTML element, React, TypeScript, Material UI, an
 
 ## Demo
 
-Not yet available.
+The live demo is available at [https://the-canvas-paint.vercel.app/](https://the-canvas-paint.vercel.app/).
 
 ## Screenshots
 
