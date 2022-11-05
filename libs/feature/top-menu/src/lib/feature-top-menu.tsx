@@ -162,11 +162,13 @@ const menuItems = [
         id: 'resize',
         text: 'Resize',
         shortcut: '⌘⇧I',
+        isDisabled: true,
       },
       {
         id: 'crop',
         text: 'Crop',
         shortcut: '⌘⇧C',
+        isDisabled: true,
       },
     ],
   },
@@ -284,6 +286,7 @@ export function TopMenu(props: TopMenuProps) {
                   <MenuItem
                     key={subMenuItem.id}
                     onClick={() => handleSubMenuItemClose(subMenuItem.id)}
+                    disabled={subMenuItem.isDisabled || false}
                   >
                     <ListItemText>{subMenuItem.text}</ListItemText>
                     <Typography variant="body2" color="text.secondary">

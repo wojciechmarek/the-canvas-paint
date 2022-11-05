@@ -21,6 +21,8 @@ const colors = [
 export interface ToolBoxMenuProps {}
 
 const ToolBoxMenuContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
   width: 200px;
   background-color: #252327;
 `;
@@ -69,10 +71,31 @@ const PreviewContainer = styled(Box)`
   width: 100%;
   background-color: white;
   margin: 5px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PreviewItem = styled(Box)<{
+  size?: number;
+  color?: string;
+}>`
+  height: ${(props) => props.size || 1}px;
+  width: ${(props) => props.size || 1}px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: ${(props) => props.color || 'white'};
+`;
+
+const GrowSpacer = styled(Box)`
+  flex-grow: 1;
 `;
 
 export function ToolBoxMenu(props: ToolBoxMenuProps) {
   const dispatch = useDispatch();
+
+  const { size, softness, color } = useSelector((state: RootState) => state.tool);
+
   const [selectedToolName, setSelectedToolName] = useState('');
   const [isPaintingToolTypeSelected, setIsPaintingToolTypeSelected] =
     useState(false);
@@ -122,13 +145,13 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
 
       <ToolPropertySection>
         <ToolPropertyTitle>Size:</ToolPropertyTitle>
-        <ToolPropertySlider onChange={handleSizeChange} />
+        <ToolPropertySlider onChange={handleSizeChange} value={size} />
       </ToolPropertySection>
 
       {isPaintingToolTypeSelected && (
         <ToolPropertySection>
           <ToolPropertyTitle>Softness:</ToolPropertyTitle>
-          <ToolPropertySlider onChange={handleSoftnessChange} />
+          <ToolPropertySlider onChange={handleSoftnessChange} value={softness} />
         </ToolPropertySection>
       )}
 
@@ -149,7 +172,16 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
 
       <ToolPropertySection>
         <ToolPropertyTitle>Preview:</ToolPropertyTitle>
-        <PreviewContainer />
+        <PreviewContainer>
+          <PreviewItem size={size} color={color} />
+        </PreviewContainer>
+      </ToolPropertySection>
+
+      <GrowSpacer />
+
+      <ToolPropertySection>
+        <ToolPropertyTitle>Pointer:</ToolPropertyTitle>
+        <ToolPropertyTitle>X: 123 Y: 3442</ToolPropertyTitle>
       </ToolPropertySection>
     </ToolBoxMenuContainer>
   );
