@@ -18,18 +18,18 @@ const menuItems = [
   {
     id: 'app-name',
     text: 'The Canvas Paint',
-    isbold: true,
+    isBold: true,
     subMenuItems: [
       {
         id: 'about',
         text: 'About the Canvas Paint',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'preferences',
         text: 'Preferences',
         shortcut: '⌘,',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'divider',
@@ -38,26 +38,26 @@ const menuItems = [
         id: 'quit',
         text: 'Quit',
         shortcut: '⌘Q',
-        isDisabled: true,
+        isDisabled: false,
       },
     ],
   },
   {
     id: 'file',
     text: 'File',
-    isbold: false,
+    isBold: false,
     subMenuItems: [
       {
         id: 'new',
         text: 'New',
         shortcut: '⌘N',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'open',
         text: 'Open',
         shortcut: '⌘O',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'divider',
@@ -66,13 +66,13 @@ const menuItems = [
         id: 'save',
         text: 'Save',
         shortcut: '⌘S',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'save-as',
         text: 'Save As',
         shortcut: '⌘⇧S',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'divider',
@@ -81,100 +81,100 @@ const menuItems = [
         id: 'print',
         text: 'Print',
         shortcut: '⌘P',
-        isDisabled: true,
+        isDisabled: false,
       },
     ],
   },
   {
     id: 'edit',
     text: 'Edit',
-    isbold: false,
+    isBold: false,
     subMenuItems: [
       {
         id: 'cut',
         text: 'Cut',
         shortcut: '⌘X',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'copy',
         text: 'Copy',
         shortcut: '⌘C',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'paste',
         text: 'Paste',
         shortcut: '⌘V',
-        isDisabled: true,
+        isDisabled: false,
       },
     ],
   },
   {
     id: 'tools',
     text: 'Tools',
-    isbold: false,
+    isBold: false,
     subMenuItems: [
       {
         id: 'pen',
         text: 'Pen',
         shortcut: 'P',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'brush',
         text: 'Brush',
         shortcut: 'B',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'spray',
         text: 'Spray',
         shortcut: 'S',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'blur',
         text: 'Blur',
         shortcut: 'U',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'eraser',
         text: 'Eraser',
         shortcut: 'E',
-        isDisabled: true,
+        isDisabled: false,
       },
     ],
   },
   {
     id: 'image',
     text: 'Image',
-    isbold: false,
+    isBold: false,
     subMenuItems: [
       {
         id: 'rotate-right',
         text: 'Rotate right',
         shortcut: '⌘R',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'rotate-left',
         text: 'Rotate left',
         shortcut: '⌘⇧R',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'flip-horizontal',
         text: 'Flip horizontal',
         shortcut: '⌘H',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'flip-vertical',
         text: 'Flip vertical',
         shortcut: '⌘⇧H',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'divider',
@@ -196,17 +196,17 @@ const menuItems = [
   {
     id: 'help',
     text: 'Help',
-    isbold: false,
+    isBold: false,
     subMenuItems: [
       {
         id: 'license',
         text: 'License',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'privacy',
         text: 'Privacy',
-        isDisabled: true,
+        isDisabled: false,
       },
       {
         id: 'divider',
@@ -214,7 +214,7 @@ const menuItems = [
       {
         id: 'github',
         text: 'Github documentation',
-        isDisabled: true,
+        isDisabled: false,
       },
     ],
   },
@@ -289,7 +289,7 @@ export function TopMenu(props: TopMenuProps) {
             aria-haspopup="true"
             aria-expanded={openedMenuId === menuItem.id ? 'true' : undefined}
             onClick={handleTopMenuItemClick}
-            isbold={menuItem.isbold.toString()}
+            isbold={menuItem.isBold.toString()}
           >
             {menuItem.text}
           </MenuButton>
