@@ -1,11 +1,12 @@
+// disable lint for this file
+/* eslint-disable */
+
 import {
-  Box,
   Divider,
   ListItemText,
   Menu,
   MenuItem,
   MenuList,
-  Paper,
   Typography,
 } from '@mui/material';
 import { Fragment, useState } from 'react';
@@ -22,11 +23,13 @@ const menuItems = [
       {
         id: 'about',
         text: 'About the Canvas Paint',
+        isDisabled: true,
       },
       {
         id: 'preferences',
         text: 'Preferences',
         shortcut: '⌘,',
+        isDisabled: true,
       },
       {
         id: 'divider',
@@ -35,6 +38,7 @@ const menuItems = [
         id: 'quit',
         text: 'Quit',
         shortcut: '⌘Q',
+        isDisabled: true,
       },
     ],
   },
@@ -47,11 +51,13 @@ const menuItems = [
         id: 'new',
         text: 'New',
         shortcut: '⌘N',
+        isDisabled: true,
       },
       {
         id: 'open',
         text: 'Open',
         shortcut: '⌘O',
+        isDisabled: true,
       },
       {
         id: 'divider',
@@ -60,11 +66,13 @@ const menuItems = [
         id: 'save',
         text: 'Save',
         shortcut: '⌘S',
+        isDisabled: true,
       },
       {
         id: 'save-as',
         text: 'Save As',
         shortcut: '⌘⇧S',
+        isDisabled: true,
       },
       {
         id: 'divider',
@@ -73,6 +81,7 @@ const menuItems = [
         id: 'print',
         text: 'Print',
         shortcut: '⌘P',
+        isDisabled: true,
       },
     ],
   },
@@ -85,16 +94,19 @@ const menuItems = [
         id: 'cut',
         text: 'Cut',
         shortcut: '⌘X',
+        isDisabled: true,
       },
       {
         id: 'copy',
         text: 'Copy',
         shortcut: '⌘C',
+        isDisabled: true,
       },
       {
         id: 'paste',
         text: 'Paste',
         shortcut: '⌘V',
+        isDisabled: true,
       },
     ],
   },
@@ -107,26 +119,31 @@ const menuItems = [
         id: 'pen',
         text: 'Pen',
         shortcut: 'P',
+        isDisabled: true,
       },
       {
         id: 'brush',
         text: 'Brush',
         shortcut: 'B',
+        isDisabled: true,
       },
       {
         id: 'spray',
         text: 'Spray',
         shortcut: 'S',
+        isDisabled: true,
       },
       {
         id: 'blur',
         text: 'Blur',
         shortcut: 'U',
+        isDisabled: true,
       },
       {
         id: 'eraser',
         text: 'Eraser',
         shortcut: 'E',
+        isDisabled: true,
       },
     ],
   },
@@ -139,21 +156,25 @@ const menuItems = [
         id: 'rotate-right',
         text: 'Rotate right',
         shortcut: '⌘R',
+        isDisabled: true,
       },
       {
         id: 'rotate-left',
         text: 'Rotate left',
         shortcut: '⌘⇧R',
+        isDisabled: true,
       },
       {
         id: 'flip-horizontal',
         text: 'Flip horizontal',
         shortcut: '⌘H',
+        isDisabled: true,
       },
       {
         id: 'flip-vertical',
         text: 'Flip vertical',
         shortcut: '⌘⇧H',
+        isDisabled: true,
       },
       {
         id: 'divider',
@@ -180,10 +201,12 @@ const menuItems = [
       {
         id: 'license',
         text: 'License',
+        isDisabled: true,
       },
       {
         id: 'privacy',
         text: 'Privacy',
+        isDisabled: true,
       },
       {
         id: 'divider',
@@ -191,6 +214,7 @@ const menuItems = [
       {
         id: 'github',
         text: 'Github documentation',
+        isDisabled: true,
       },
     ],
   },
