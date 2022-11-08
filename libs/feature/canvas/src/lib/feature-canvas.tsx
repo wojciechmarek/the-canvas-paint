@@ -9,7 +9,9 @@
 
 import styled from '@emotion/styled';
 import { Box } from '@mui/material';
+import { setPointer } from '@the-canvas-paint/common/store';
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 /* eslint-disable-next-line */
 export interface CanvasProps {}
@@ -32,6 +34,7 @@ const CanvasArea = styled.canvas`
 `;
 
 export function Canvas(props: CanvasProps) {
+  const dispatch = useDispatch();
   const canvasRef = useRef(null);
 
   const [pointerPosition, setPointerPosition] = useState({ x: 0, y: 0 });
@@ -50,27 +53,28 @@ export function Canvas(props: CanvasProps) {
   };
 
   const handleMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+    dispatch(setPointer({ x: e.clientX, y: e.clientY }));
     setPointerPosition({ x: e.clientX, y: e.clientY });
   };
 
   useEffect(() => {
-    // const canvas = canvasRef.current as unknown as HTMLCanvasElement;
-    // const context = canvas.getContext('2d');
+    const canvas = canvasRef.current as unknown as HTMLCanvasElement;
+    const context = canvas.getContext('2d');
 
-    // context?.canvas?.setAttribute('width', '1024');
-    // context?.canvas?.setAttribute('height', '768');
+    context?.canvas?.setAttribute('width', '1024');
+    context?.canvas?.setAttribute('height', '768');
 
-    // if (context) {
-    //   context.fillStyle = '#FFFFFF';
-    //   context.fillRect(0, 0, context.canvas.width, context.canvas.height);
-    // }
+    if (context) {
+      context.fillStyle = '#FFFFFF';
+      context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+    }
 
   }, []);
 
   return (
     <CanvasWrapper>
       <CanvasContainer>
-        {/* <CanvasArea ref={canvasRef} onMouseDown={handleDown} onMouseUp={handleUp} onMouseEnter={handleEnter} onMouseMove={handleMove} /> */}
+        <CanvasArea ref={canvasRef} onMouseDown={handleDown} onMouseUp={handleUp} onMouseEnter={handleEnter} onMouseMove={handleMove} />
       </CanvasContainer>
     </CanvasWrapper>
   );

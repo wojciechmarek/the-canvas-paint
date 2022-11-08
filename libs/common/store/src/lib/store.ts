@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import toolReducer from './slices/tool'
+import toolReducer from './slices/tool';
+import pointerReducer from './slices/pointer';
 
 export const store = configureStore({
   reducer: {
     tool: toolReducer,
+    pointer: pointerReducer,
   },
 })
 

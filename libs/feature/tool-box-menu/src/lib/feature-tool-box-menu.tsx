@@ -95,6 +95,8 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
   const dispatch = useDispatch();
 
   const { size, softness, color } = useSelector((state: RootState) => state.tool);
+  const { x, y } = useSelector((state: RootState) => state.pointer);
+
 
   const [selectedToolName, setSelectedToolName] = useState('');
   const [isPaintingToolTypeSelected, setIsPaintingToolTypeSelected] =
@@ -181,7 +183,7 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
 
       <ToolPropertySection>
         <ToolPropertyTitle>Pointer:</ToolPropertyTitle>
-        <ToolPropertyTitle>X: 123 Y: 3442</ToolPropertyTitle>
+        <ToolPropertyTitle>X: {x} Y: {y}</ToolPropertyTitle>
       </ToolPropertySection>
     </ToolBoxMenuContainer>
   );
