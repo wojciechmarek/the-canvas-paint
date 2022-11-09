@@ -9,6 +9,8 @@ import { ToolBoxMenu } from '@the-canvas-paint/feature/tool-box-menu';
 import { BottomMenu } from '@the-canvas-paint/feature/bottom-menu';
 import { store } from '@the-canvas-paint/common/store';
 
+import { Analytics } from '@vercel/analytics/react';
+
 /* eslint-disable-next-line */
 export interface FeatureLayoutProps {}
 
@@ -24,6 +26,7 @@ const TopMenuCanvasColorsMenuContainer = styled('div')`
 export function Layout(props: FeatureLayoutProps) {
   return (
     <Provider store={store}>
+      <Analytics />
       <LayoutContainer>
         <TopMenu />
         <TopMenuCanvasColorsMenuContainer>
