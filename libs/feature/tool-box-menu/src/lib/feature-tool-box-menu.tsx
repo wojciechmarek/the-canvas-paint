@@ -67,7 +67,7 @@ const ColorButtonBase = styled(ButtonBase)`
 `;
 
 const PreviewContainer = styled(Box)`
-  height: 100px;
+  height: 110px;
   width: 100%;
   background-color: white;
   margin: 5px 0;
@@ -79,12 +79,13 @@ const PreviewContainer = styled(Box)`
 const PreviewItem = styled(Box)<{
   size?: number;
   color?: string;
+  harness?: number;
 }>`
   height: ${(props) => props.size || 1}px;
   width: ${(props) => props.size || 1}px;
   border-radius: 50%;
   border: 1px solid black;
-  background-color: ${(props) => props.color || 'white'};
+  background: ${(props) => `radial-gradient(circle, ${props.color} ${props.harness}%, rgba(255,255,255,1) 100%)`};
 `;
 
 const GrowSpacer = styled(Box)`
@@ -175,7 +176,7 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
       <ToolPropertySection>
         <ToolPropertyTitle>Preview:</ToolPropertyTitle>
         <PreviewContainer>
-          <PreviewItem size={size} color={color} />
+          <PreviewItem size={size} color={color} harness={100 - softness} />
         </PreviewContainer>
       </ToolPropertySection>
 
