@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 import { Box, ButtonBase, Slider, Typography } from '@mui/material';
-import { RootState, setToolColor, setToolSize, setToolSoftness } from '@the-canvas-paint/common/store';
+import {
+  RootState,
+  setToolColor,
+  setToolSize,
+  setToolSoftness,
+} from '@the-canvas-paint/common/store';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -79,13 +84,14 @@ const PreviewContainer = styled(Box)`
 const PreviewItem = styled(Box)<{
   size?: number;
   color?: string;
-  harness?: number;
+  hardness?: number;
 }>`
   height: ${(props) => props.size || 1}px;
   width: ${(props) => props.size || 1}px;
   border-radius: 50%;
   border: 1px solid black;
-  background: ${(props) => `radial-gradient(circle, ${props.color} ${props.harness}%, rgba(255,255,255,1) 100%)`};
+  background: ${(props) =>
+    `radial-gradient(circle, ${props.color} ${props.hardness}%, rgba(255,255,255,1) 100%)`};
 `;
 
 const GrowSpacer = styled(Box)`
@@ -95,13 +101,14 @@ const GrowSpacer = styled(Box)`
 export function ToolBoxMenu(props: ToolBoxMenuProps) {
   const dispatch = useDispatch();
 
-  const { size, softness, color } = useSelector((state: RootState) => state.tool);
+  const { size, softness, color } = useSelector(
+    (state: RootState) => state.tool
+  );
   const { x, y } = useSelector((state: RootState) => state.pointer);
 
-
   const [selectedToolName, setSelectedToolName] = useState('');
-  const [isPaintingToolTypeSelected, setIsPaintingToolTypeSelected] =
-    useState(false);
+  const [isEraserSelected, setIsEraserSelected] = useState(false);
+  const [isPenSelected, setIsPenSelected] = useState(false);
 
   const { type } = useSelector((state: RootState) => state.tool);
 
@@ -116,8 +123,6 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
   const handleSoftnessChange = (e: any, value: number | number[]) => {
     dispatch(setToolSoftness(value as number));
   };
-
-
 
   useEffect(() => {
     switch (type) {
@@ -138,8 +143,11 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
         break;
     }
 
-    const isPaintingToolTypeSelected = type !== 'eraser';
-    setIsPaintingToolTypeSelected(isPaintingToolTypeSelected);
+    const isEraserSelected = type === 'eraser';
+    setIsEraserSelected(isEraserSelected);
+
+    const isPenSelected = type === 'pen';
+    setIsPenSelected(isPenSelected);
   }, [type]);
 
   return (
@@ -151,14 +159,17 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
         <ToolPropertySlider onChange={handleSizeChange} value={size} />
       </ToolPropertySection>
 
-      {isPaintingToolTypeSelected && (
+      {!isEraserSelected && (
         <ToolPropertySection>
           <ToolPropertyTitle>Softness:</ToolPropertyTitle>
-          <ToolPropertySlider onChange={handleSoftnessChange} value={softness} />
+          <ToolPropertySlider
+            onChange={handleSoftnessChange}
+            value={softness}
+          />
         </ToolPropertySection>
       )}
 
-      {isPaintingToolTypeSelected && (
+      {!isEraserSelected && (
         <ToolPropertySection>
           <ToolPropertyTitle>Colors:</ToolPropertyTitle>
           <ColorsContainer>
@@ -176,7 +187,11 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
       <ToolPropertySection>
         <ToolPropertyTitle>Preview:</ToolPropertyTitle>
         <PreviewContainer>
-          <PreviewItem size={size} color={color} harness={100 - softness} />
+          <PreviewItem
+            size={size}
+            color={isEraserSelected ? 'white' : color}
+            hardness={isPenSelected || isEraserSelected ? 100 : 100 - softness}
+          />
         </PreviewContainer>
       </ToolPropertySection>
 
@@ -184,7 +199,9 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
 
       <ToolPropertySection>
         <ToolPropertyTitle>Pointer:</ToolPropertyTitle>
-        <ToolPropertyTitle>X: {x} Y: {y}</ToolPropertyTitle>
+        <ToolPropertyTitle>
+          X: {x} Y: {y}
+        </ToolPropertyTitle>
       </ToolPropertySection>
     </ToolBoxMenuContainer>
   );
