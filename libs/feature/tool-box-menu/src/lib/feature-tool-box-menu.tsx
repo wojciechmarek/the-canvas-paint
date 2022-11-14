@@ -45,8 +45,10 @@ const ToolPropertySection = styled(Box)`
   padding: 10px;
 `;
 
-const ToolPropertyTitle = styled(Typography)`
-  color: white;
+const ToolPropertyTitle = styled(Typography)<{
+  disabled?: boolean;
+}>`
+  color: ${(props) => (props.disabled ? 'gray' : 'white')};
   font-size: 14px;
   font-weight: bold;
   text-align: start;
@@ -161,10 +163,11 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
 
       {!isEraserSelected && (
         <ToolPropertySection>
-          <ToolPropertyTitle>Softness:</ToolPropertyTitle>
+          <ToolPropertyTitle disabled={isPenSelected}>Softness:</ToolPropertyTitle>
           <ToolPropertySlider
+            disabled={isPenSelected}
             onChange={handleSoftnessChange}
-            value={softness}
+            value={isPenSelected ? 0 : softness}
           />
         </ToolPropertySection>
       )}

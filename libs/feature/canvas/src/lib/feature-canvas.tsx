@@ -9,9 +9,9 @@
 
 import styled from '@emotion/styled';
 import { Box } from '@mui/material';
-import { setPointer } from '@the-canvas-paint/common/store';
+import { RootState, setPointer } from '@the-canvas-paint/common/store';
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 /* eslint-disable-next-line */
 export interface CanvasProps {}
@@ -34,33 +34,49 @@ const CanvasArea = styled.canvas`
 `;
 
 export function Canvas(props: CanvasProps) {
+  const { color, size } = useSelector((state: RootState) => state.tool);
+
+  const [isDrawingProcess, setIsDrawingProcess] = useState(false);
+
   const dispatch = useDispatch();
   const canvasRef = useRef(null);
 
+  let context: CanvasRenderingContext2D | null = null;
+  
+  const canvas = canvasRef.current as unknown as HTMLCanvasElement;
+  if (canvas) {
+    context = canvas.getContext('2d');
+  }
+
   const [pointerPosition, setPointerPosition] = useState({ x: 0, y: 0 });
 
-
   const handleDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-    console.log(e);
+    if (e.buttons === 1) {
+      context?.beginPath();
+      setIsDrawingProcess(true);
+    }
   };
 
   const handleUp = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-    console.log(e);
-  };
-
-  const handleEnter = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-    console.log(e);
+    if (e.buttons === 0) {
+      context?.closePath();
+      setIsDrawingProcess(false);
+    }
   };
 
   const handleMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-    dispatch(setPointer({ x: e.clientX, y: e.clientY }));
-    setPointerPosition({ x: e.clientX, y: e.clientY });
+    const coords = { x: e.clientX, y: e.clientY };
+    dispatch(setPointer(coords));
+    setPointerPosition(coords);
+
+    if (isDrawingProcess) {
+      context?.moveTo(pointerPosition.x, pointerPosition.y);
+      context?.lineTo(coords.x, coords.y);
+      context?.stroke();
+    }
   };
 
   useEffect(() => {
-    const canvas = canvasRef.current as unknown as HTMLCanvasElement;
-    const context = canvas.getContext('2d');
-
     context?.canvas?.setAttribute('width', '1024');
     context?.canvas?.setAttribute('height', '768');
 
@@ -68,13 +84,25 @@ export function Canvas(props: CanvasProps) {
       context.fillStyle = '#FFFFFF';
       context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     }
-
   }, []);
+
+  useEffect(() => {
+    if (context) {
+      context.lineWidth = size;
+      context.lineCap = 'round';
+      context.strokeStyle = color
+    }
+  }, [color, size]);
 
   return (
     <CanvasWrapper>
       <CanvasContainer>
-        <CanvasArea ref={canvasRef} onMouseDown={handleDown} onMouseUp={handleUp} onMouseEnter={handleEnter} onMouseMove={handleMove} />
+        <CanvasArea
+          ref={canvasRef}
+          onMouseDown={handleDown}
+          onMouseUp={handleUp}
+          onMouseMove={handleMove}
+        />
       </CanvasContainer>
     </CanvasWrapper>
   );
