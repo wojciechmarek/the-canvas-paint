@@ -27,10 +27,14 @@ const CanvasWrapper = styled('div')`
 
 const CanvasContainer = styled(Box)`
   border: 1px solid #000;
+  position: relative;
 `;
 
 const CanvasArea = styled.canvas`
   cursor: crosshair;
+  height: 768px;
+  width: 1024px;
+  background-color: #fff;
 `;
 
 export function Canvas(props: CanvasProps) {
@@ -65,7 +69,9 @@ export function Canvas(props: CanvasProps) {
   };
 
   const handleMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-    const coords = { x: e.clientX, y: e.clientY };
+    console.log(e);
+    
+    const coords = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
     dispatch(setPointer(coords));
     setPointerPosition(coords);
 
@@ -84,7 +90,10 @@ export function Canvas(props: CanvasProps) {
       context.fillStyle = '#FFFFFF';
       context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     }
-  }, []);
+  }, [
+    context?.canvas?.width,
+    context?.canvas?.height,
+  ]);
 
   useEffect(() => {
     if (context) {
