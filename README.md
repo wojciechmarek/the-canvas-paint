@@ -12,7 +12,9 @@ The live demo is available at [https://the-canvas-paint.vercel.app/](https://the
 
 ## Screenshots
 
-The same as demo, not yet available.
+The Canvas Paint with an demo image 😎:
+
+![demo](./screenshot/demo.png)
 
 ## Material Design
 
