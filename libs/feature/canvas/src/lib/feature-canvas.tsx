@@ -68,9 +68,7 @@ export function Canvas(props: CanvasProps) {
     }
   };
 
-  const handleMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-    console.log(e);
-    
+  const handleMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {    
     const coords = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
     dispatch(setPointer(coords));
     setPointerPosition(coords);
