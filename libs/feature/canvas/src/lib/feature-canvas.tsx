@@ -1,12 +1,3 @@
-// disable eslint for this file
-/* eslint-disable */
-
-// disable null check for this file
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-
-// disable errors for this file
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import styled from '@emotion/styled';
 import { Box } from '@mui/material';
 import { RootState, setPointer } from '@the-canvas-paint/common/store';
@@ -38,7 +29,7 @@ const CanvasArea = styled.canvas`
 `;
 
 export function Canvas(props: CanvasProps) {
-  const { color, size } = useSelector((state: RootState) => state.tool);
+  const { color, size, type } = useSelector((state: RootState) => state.tool);
 
   const [isDrawingProcess, setIsDrawingProcess] = useState(false);
 
@@ -46,7 +37,7 @@ export function Canvas(props: CanvasProps) {
   const canvasRef = useRef(null);
 
   let context: CanvasRenderingContext2D | null = null;
-  
+
   const canvas = canvasRef.current as unknown as HTMLCanvasElement;
   if (canvas) {
     context = canvas.getContext('2d');
@@ -68,7 +59,7 @@ export function Canvas(props: CanvasProps) {
     }
   };
 
-  const handleMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {    
+  const handleMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     const coords = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
     dispatch(setPointer(coords));
     setPointerPosition(coords);
@@ -88,18 +79,15 @@ export function Canvas(props: CanvasProps) {
       context.fillStyle = '#FFFFFF';
       context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     }
-  }, [
-    context?.canvas?.width,
-    context?.canvas?.height,
-  ]);
+  }, [context?.canvas?.width, context?.canvas?.height, context]);
 
   useEffect(() => {
     if (context) {
       context.lineWidth = size;
       context.lineCap = 'round';
-      context.strokeStyle = color
+      context.strokeStyle = type === 'eraser' ? '#FFFFFF' : color;
     }
-  }, [color, size]);
+  }, [color, size, type, context]);
 
   return (
     <CanvasWrapper>
