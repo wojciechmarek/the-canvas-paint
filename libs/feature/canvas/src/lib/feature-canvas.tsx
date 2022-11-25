@@ -76,6 +76,7 @@ export function Canvas(props: CanvasProps) {
     context?.canvas?.setAttribute('height', '768');
 
     if (context) {
+      context.lineWidth = 10;
       context.fillStyle = '#FFFFFF';
       context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     }
