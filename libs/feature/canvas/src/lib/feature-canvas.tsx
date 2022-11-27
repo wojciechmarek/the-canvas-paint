@@ -32,6 +32,7 @@ export function Canvas(props: CanvasProps) {
   const { color, size, type } = useSelector((state: RootState) => state.tool);
 
   const [isDrawingProcess, setIsDrawingProcess] = useState(false);
+  const [isSpray, setIsSpray] = useState(false);
 
   const dispatch = useDispatch();
   const canvasRef = useRef(null);
@@ -44,6 +45,33 @@ export function Canvas(props: CanvasProps) {
   }
 
   const [pointerPosition, setPointerPosition] = useState({ x: 0, y: 0 });
+
+  const getRandomOffset = (radius: any) => {
+    const randomAngle = Math.random() * (2 * Math.PI);
+    const randomRadius = Math.random() * radius;
+  
+    return {
+      x: Math.cos(randomAngle) * randomRadius,
+      y: Math.sin(randomRadius) * randomAngle
+    }
+  }
+
+  const generateSprayPoints = (e: any) => {
+    const amountOfPoints = 20
+  
+    if (!context) {
+      return; 
+    }
+
+    for (let i = 0; i < amountOfPoints; i++) {
+      const offset = getRandomOffset(context.lineWidth * 2);
+      const x = e.nativeEvent.offsetX + offset.x
+      const y = e.nativeEvent.offsetY + offset.y
+  
+      context.fillStyle = context.strokeStyle
+      context.fillRect(x, y, 1, 1)
+    }
+  }
 
   const handleDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     if (e.buttons === 1) {
@@ -67,7 +95,13 @@ export function Canvas(props: CanvasProps) {
     if (isDrawingProcess) {
       context?.moveTo(pointerPosition.x, pointerPosition.y);
       context?.lineTo(coords.x, coords.y);
-      context?.stroke();
+
+      if (isSpray) {
+        generateSprayPoints(e);
+      } else {
+        context?.stroke();
+      }
+
     }
   };
 
@@ -88,6 +122,13 @@ export function Canvas(props: CanvasProps) {
       context.lineCap = 'round';
       context.strokeStyle = type === 'eraser' ? '#FFFFFF' : color;
     }
+
+    if (type === 'spray') {
+      setIsSpray(true);
+    } else {
+      setIsSpray(false);
+    }
+
   }, [color, size, type, context]);
 
   return (
