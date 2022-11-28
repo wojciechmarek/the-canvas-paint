@@ -6,13 +6,23 @@ A simple canvas paint app.
 
 To practice the usage of canvas HTML element, React, TypeScript, Material UI, and other technologies.
 
+## Features
+
+The current version of the app supports the following features:
+
+- Drawing on the canvas
+- Changing the tool: pen, brush, spray, blur, eraser
+- Changing the tool's color
+- Changing the tool's size
+- Previewing the tool's size and color
+
 ## Demo
 
 The live demo is available at [https://the-canvas-paint.vercel.app/](https://the-canvas-paint.vercel.app/).
 
-## Screenshots
+## Screenshot
 
-The Canvas Paint with an demo image 😎:
+The Canvas Paint with a demo image 😎:
 
 ![demo](./screenshot/demo.png)
 
@@ -30,7 +40,7 @@ The application uses only atomic components (such as Buttons, Inputs, etc.) and 
 - 🌈 **Framework:** react
 - 🛠️ **Tools:** any specific tools at the moment
 - 🎨 **Styling:** React Material UI, styled-components by emotion from MUI, lucide icons
-- 💎 **Others:** desktop-first approach
+- 💎 **Others:** desktop-first approach, canvas HTML element
 
 ## How to run
 
