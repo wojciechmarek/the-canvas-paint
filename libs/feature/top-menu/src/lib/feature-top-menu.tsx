@@ -23,13 +23,13 @@ const menuItems = [
       {
         id: 'about',
         text: 'About the Canvas Paint',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'preferences',
         text: 'Preferences',
         shortcut: '⌘,',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'divider',
@@ -51,13 +51,13 @@ const menuItems = [
         id: 'new',
         text: 'New',
         shortcut: '⌘N',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'open',
         text: 'Open',
         shortcut: '⌘O',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'divider',
@@ -66,13 +66,13 @@ const menuItems = [
         id: 'save',
         text: 'Save',
         shortcut: '⌘S',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'save-as',
         text: 'Save As',
         shortcut: '⌘⇧S',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'divider',
@@ -81,7 +81,7 @@ const menuItems = [
         id: 'print',
         text: 'Print',
         shortcut: '⌘P',
-        isDisabled: false,
+        isDisabled: true,
       },
     ],
   },
@@ -94,19 +94,19 @@ const menuItems = [
         id: 'cut',
         text: 'Cut',
         shortcut: '⌘X',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'copy',
         text: 'Copy',
         shortcut: '⌘C',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'paste',
         text: 'Paste',
         shortcut: '⌘V',
-        isDisabled: false,
+        isDisabled: true,
       },
     ],
   },
@@ -156,25 +156,25 @@ const menuItems = [
         id: 'rotate-right',
         text: 'Rotate right',
         shortcut: '⌘R',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'rotate-left',
         text: 'Rotate left',
         shortcut: '⌘⇧R',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'flip-horizontal',
         text: 'Flip horizontal',
         shortcut: '⌘H',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'flip-vertical',
         text: 'Flip vertical',
         shortcut: '⌘⇧H',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'divider',
@@ -206,7 +206,7 @@ const menuItems = [
       {
         id: 'privacy',
         text: 'Privacy',
-        isDisabled: false,
+        isDisabled: true,
       },
       {
         id: 'divider',
@@ -242,12 +242,16 @@ export function TopMenu(props: TopMenuProps) {
     console.log(`Sub menu item ${subMenuItemId} clicked`);
 
     switch (subMenuItemId) {
+      case 'quit':
+        window.close();
+        break;
+
       case 'license':
         window.open('https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt', '_blank');
         break;
 
       case 'github':
-        window.open('https://www.github.com', '_blank');
+        window.open('https://github.com/wojciechmarek/the-canvas-paint#readme', '_blank');
         break;
 
       case 'brush':        
