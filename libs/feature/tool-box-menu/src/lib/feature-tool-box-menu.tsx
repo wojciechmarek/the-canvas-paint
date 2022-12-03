@@ -20,6 +20,7 @@ const colors = [
   'brown',
   'black',
   'white',
+  'rainbow',
 ];
 
 /* eslint-disable-next-line */
@@ -87,12 +88,15 @@ const PreviewItem = styled(Box)<{
   size?: number;
   color?: string;
   hardness?: number;
+  isRainbow?: boolean;
 }>`
   height: ${(props) => props.size || 1}px;
   width: ${(props) => props.size || 1}px;
   border-radius: 50%;
   border: 1px solid black;
   background: ${(props) =>
+    props.isRainbow ? 
+    `linear-gradient(135deg, red, orange, yellow, green, blue, indigo, violet)` :
     `radial-gradient(circle, ${props.color} ${props.hardness}%, rgba(255,255,255,1) 100%)`};
 `;
 
@@ -163,7 +167,9 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
 
       {!isEraserSelected && (
         <ToolPropertySection>
-          <ToolPropertyTitle disabled={isPenSelected}>Softness:</ToolPropertyTitle>
+          <ToolPropertyTitle disabled={isPenSelected}>
+            Softness:
+          </ToolPropertyTitle>
           <ToolPropertySlider
             disabled={isPenSelected}
             onChange={handleSoftnessChange}
@@ -179,7 +185,12 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
             {colors.map((color) => (
               <ColorButtonBase
                 key={color}
-                style={{ backgroundColor: color }}
+                style={{
+                  background:
+                    color === 'rainbow'
+                      ? 'linear-gradient(135deg, red, orange, yellow, green, blue, indigo, violet)'
+                      : color,
+                }}
                 onClick={() => handleColorClick(color)}
               />
             ))}
@@ -194,6 +205,7 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
             size={size}
             color={isEraserSelected ? 'white' : color}
             hardness={isPenSelected || isEraserSelected ? 100 : 100 - softness}
+            isRainbow={color === 'rainbow'}
           />
         </PreviewContainer>
       </ToolPropertySection>

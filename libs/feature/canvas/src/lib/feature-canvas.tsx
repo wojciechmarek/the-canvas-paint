@@ -33,6 +33,8 @@ export function Canvas(props: CanvasProps) {
 
   const [isDrawingProcess, setIsDrawingProcess] = useState(false);
   const [isSpray, setIsSpray] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const [isRainbowColor, setIsRainbowColor] = useState(false);
 
   const dispatch = useDispatch();
   const canvasRef = useRef(null);
@@ -91,6 +93,7 @@ export function Canvas(props: CanvasProps) {
     const coords = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY };
     dispatch(setPointer(coords));
     setPointerPosition(coords);
+    setCounter(counter + 1);
 
     if (isDrawingProcess) {
       context?.moveTo(pointerPosition.x, pointerPosition.y);
@@ -102,6 +105,9 @@ export function Canvas(props: CanvasProps) {
         context?.stroke();
       }
 
+      if (context && isRainbowColor) {       
+        context.strokeStyle = `hsl(${counter % 360}, 100%, 50%)`;
+      }
     }
   };
 
@@ -127,6 +133,12 @@ export function Canvas(props: CanvasProps) {
       setIsSpray(true);
     } else {
       setIsSpray(false);
+    }
+
+    if (color === 'rainbow') {
+      setIsRainbowColor(true);
+    } else {
+      setIsRainbowColor(false);
     }
 
   }, [color, size, type, context]);
