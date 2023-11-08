@@ -1,8 +1,7 @@
-
-import { Box, Button, styled } from "@mui/material";
+import { Box, Button, styled } from '@mui/material';
 
 export const TopMenuContainer = styled(Box)`
-  background-color:#1A181B;
+  background-color: #1a181b;
   padding: 0 10px;
   height: 40px;
   display: flex;
@@ -15,7 +14,5 @@ export const MenuButton = styled(Button)<{
 }>`
   color: white;
   text-transform: none;
-  font-weight: ${(props) => (props.isbold === "true" ? "bold" : "normal")};
+  font-weight: ${(props) => (props.isbold === 'true' ? 'bold' : 'normal')};
 `;
-
-

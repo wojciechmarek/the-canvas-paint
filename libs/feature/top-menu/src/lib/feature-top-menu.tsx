@@ -230,7 +230,7 @@ export function TopMenu(props: TopMenuProps) {
   const [openedMenuId, setOpenedMenuId] = useState<string>('');
 
   const handleTopMenuItemClick = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     setAnchorElement(event.currentTarget);
     setOpenedMenuId(event.currentTarget.id);
@@ -247,21 +247,27 @@ export function TopMenu(props: TopMenuProps) {
         break;
 
       case 'license':
-        window.open('https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt', '_blank');
+        window.open(
+          'https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt',
+          '_blank',
+        );
         break;
 
       case 'github':
-        window.open('https://github.com/wojciechmarek/the-canvas-paint#readme', '_blank');
+        window.open(
+          'https://github.com/wojciechmarek/the-canvas-paint#readme',
+          '_blank',
+        );
         break;
 
-      case 'brush':        
+      case 'brush':
         dispatch(setToolType('brush'));
         break;
 
       case 'pen':
         dispatch(setToolType('pen'));
         break;
-      
+
       case 'spray':
         dispatch(setToolType('spray'));
         break;
@@ -277,7 +283,6 @@ export function TopMenu(props: TopMenuProps) {
       default:
         break;
     }
-
   };
 
   return (
@@ -321,7 +326,7 @@ export function TopMenu(props: TopMenuProps) {
                       {subMenuItem.shortcut}
                     </Typography>
                   </MenuItem>
-                )
+                ),
               )}
             </MenuList>
           </Menu>

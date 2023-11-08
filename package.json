@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nx run the-canvas-paint:serve",
-    "build": "nx run the-canvas-paint:build"
+    "build": "nx run the-canvas-paint:build",
+    "pretty": "prettier --write ."
   },
   "private": true,
   "dependencies": {

@@ -95,9 +95,9 @@ const PreviewItem = styled(Box)<{
   border-radius: 50%;
   border: 1px solid black;
   background: ${(props) =>
-    props.isRainbow ? 
-    `linear-gradient(135deg, red, orange, yellow, green, blue, indigo, violet)` :
-    `radial-gradient(circle, ${props.color} ${props.hardness}%, rgba(255,255,255,1) 100%)`};
+    props.isRainbow
+      ? `linear-gradient(135deg, red, orange, yellow, green, blue, indigo, violet)`
+      : `radial-gradient(circle, ${props.color} ${props.hardness}%, rgba(255,255,255,1) 100%)`};
 `;
 
 const GrowSpacer = styled(Box)`
@@ -108,7 +108,7 @@ export function ToolBoxMenu(props: ToolBoxMenuProps) {
   const dispatch = useDispatch();
 
   const { size, softness, color } = useSelector(
-    (state: RootState) => state.tool
+    (state: RootState) => state.tool,
   );
   const { x, y } = useSelector((state: RootState) => state.pointer);
 

@@ -51,29 +51,29 @@ export function Canvas(props: CanvasProps) {
   const getRandomOffset = (radius: any) => {
     const randomAngle = Math.random() * (2 * Math.PI);
     const randomRadius = Math.random() * radius;
-  
+
     return {
       x: Math.cos(randomAngle) * randomRadius,
-      y: Math.sin(randomRadius) * randomAngle
-    }
-  }
+      y: Math.sin(randomRadius) * randomAngle,
+    };
+  };
 
   const generateSprayPoints = (e: any) => {
-    const amountOfPoints = 20
-  
+    const amountOfPoints = 20;
+
     if (!context) {
-      return; 
+      return;
     }
 
     for (let i = 0; i < amountOfPoints; i++) {
       const offset = getRandomOffset(context.lineWidth * 2);
-      const x = e.nativeEvent.offsetX + offset.x
-      const y = e.nativeEvent.offsetY + offset.y
-  
-      context.fillStyle = context.strokeStyle
-      context.fillRect(x, y, 1, 1)
+      const x = e.nativeEvent.offsetX + offset.x;
+      const y = e.nativeEvent.offsetY + offset.y;
+
+      context.fillStyle = context.strokeStyle;
+      context.fillRect(x, y, 1, 1);
     }
-  }
+  };
 
   const handleDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     if (e.buttons === 1) {
@@ -105,7 +105,7 @@ export function Canvas(props: CanvasProps) {
         context?.stroke();
       }
 
-      if (context && isRainbowColor) {       
+      if (context && isRainbowColor) {
         context.strokeStyle = `hsl(${counter % 360}, 100%, 50%)`;
       }
     }
@@ -140,7 +140,6 @@ export function Canvas(props: CanvasProps) {
     } else {
       setIsRainbowColor(false);
     }
-
   }, [color, size, type, context]);
 
   return (

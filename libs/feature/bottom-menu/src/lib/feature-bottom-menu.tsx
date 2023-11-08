@@ -25,7 +25,6 @@ const MenuButton = styled(ButtonBase)`
 `;
 
 export function BottomMenu(props: BottomMenuProps) {
-
   const dispatch = useDispatch();
 
   const handleBottomMenuItemClick = (type: string) => {
