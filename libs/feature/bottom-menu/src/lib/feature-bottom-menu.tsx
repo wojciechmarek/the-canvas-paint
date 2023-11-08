@@ -1,31 +1,11 @@
-import styled from '@emotion/styled';
-import { Box, ButtonBase } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { setToolType } from '@the-canvas-paint/common/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, setToolType } from '@the-canvas-paint/common/store';
+import { BottomMenuContainer, MenuButton } from './feature-bottom-menu.styled';
 
-/* eslint-disable-next-line */
-export interface BottomMenuProps {}
-
-const BottomMenuContainer = styled(Box)`
-  height: 40px;
-  background-color: #1a181b;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-`;
-
-const MenuButton = styled(ButtonBase)`
-  color: white;
-  text-transform: none;
-  height: 36px;
-  width: 36px;
-  border-radius: 4px;
-`;
-
-export function BottomMenu(props: BottomMenuProps) {
+export function BottomMenu() {
   const dispatch = useDispatch();
+
+  const { type } = useSelector((state: RootState) => state.tool);
 
   const handleBottomMenuItemClick = (type: string) => {
     dispatch(setToolType(type));
@@ -33,7 +13,10 @@ export function BottomMenu(props: BottomMenuProps) {
 
   return (
     <BottomMenuContainer>
-      <MenuButton onClick={() => handleBottomMenuItemClick('pen')}>
+      <MenuButton
+        onClick={() => handleBottomMenuItemClick('pen')}
+        isSelected={type === 'pen'}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -50,7 +33,10 @@ export function BottomMenu(props: BottomMenuProps) {
           <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
         </svg>{' '}
       </MenuButton>
-      <MenuButton onClick={() => handleBottomMenuItemClick('brush')}>
+      <MenuButton
+        onClick={() => handleBottomMenuItemClick('brush')}
+        isSelected={type === 'brush'}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -67,7 +53,10 @@ export function BottomMenu(props: BottomMenuProps) {
           <path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z" />
         </svg>
       </MenuButton>
-      <MenuButton onClick={() => handleBottomMenuItemClick('spray')}>
+      <MenuButton
+        onClick={() => handleBottomMenuItemClick('spray')}
+        isSelected={type === 'spray'}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -92,7 +81,10 @@ export function BottomMenu(props: BottomMenuProps) {
           <path d="m13 19 8-2" />
         </svg>
       </MenuButton>
-      <MenuButton onClick={() => handleBottomMenuItemClick('blur')}>
+      <MenuButton
+        onClick={() => handleBottomMenuItemClick('blur')}
+        isSelected={type === 'blur'}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -111,7 +103,10 @@ export function BottomMenu(props: BottomMenuProps) {
           <path d="m7 15-1.76-1.76a2 2 0 0 0-2.83 2.82l3.6 3.6C7.5 21.14 9.2 22 12 22h2a8 8 0 0 0 8-8V7a2 2 0 1 0-4 0v5" />
         </svg>
       </MenuButton>
-      <MenuButton onClick={() => handleBottomMenuItemClick('eraser')}>
+      <MenuButton
+        onClick={() => handleBottomMenuItemClick('eraser')}
+        isSelected={type === 'eraser'}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
