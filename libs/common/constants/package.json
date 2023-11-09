@@ -1,5 +1,5 @@
 {
-  "name": "@the-canvas-paint/common/models",
+  "name": "@the-canvas-paint/common/constants",
   "version": "0.0.1",
   "main": "./index.js",
   "types": "./index.d.ts",

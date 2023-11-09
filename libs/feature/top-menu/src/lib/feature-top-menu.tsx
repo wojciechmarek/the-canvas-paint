@@ -13,7 +13,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { MenuButton, TopMenuContainer } from './feature-top-menu.styled';
 import { useDispatch } from 'react-redux';
 import { setToolType } from '@the-canvas-paint/common/store';
-import { menuItems } from './menu-items';
+import { topMenuItems } from '@the-canvas-paint/common/constants';
 
 /* eslint-disable-next-line */
 export interface TopMenuProps {}
@@ -127,7 +127,7 @@ export function TopMenu(props: TopMenuProps) {
 
   return (
     <TopMenuContainer>
-      {menuItems.map((menuItem) => (
+      {topMenuItems.map((menuItem) => (
         <Fragment key={`${menuItem.id}`}>
           <MenuButton
             key={menuItem.id}

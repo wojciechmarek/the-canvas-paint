@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@the-canvas-paint/common/models": ["libs/common/models/src/index.ts"],
+      "@the-canvas-paint/common/constants": [
+        "libs/common/constants/src/index.ts"
+      ],
       "@the-canvas-paint/common/store": ["libs/common/store/src/index.ts"],
       "@the-canvas-paint/feature/bottom-menu": [
         "libs/feature/bottom-menu/src/index.ts"

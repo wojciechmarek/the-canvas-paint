@@ -18,7 +18,7 @@ import {
   ToolPropertySlider,
   ToolPropertyTitle,
 } from './feature-tool-box-menu.styled';
-import { colors } from './colors';
+import { colors } from '@the-canvas-paint/common/constants';
 
 export function ToolBoxMenu() {
   const dispatch = useDispatch();

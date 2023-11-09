@@ -1,4 +1,4 @@
-export const menuItems = [
+export const topMenuItems = [
   {
     id: 'app-name',
     text: 'The Canvas Paint',
