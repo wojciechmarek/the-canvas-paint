@@ -30,7 +30,7 @@ The Canvas Paint with a demo image 😎:
 
 This app is designed according to the [Material Design](https://material.io/design) guidelines, but... it's not following them strictly.
 
-The whole Material Design system provides a lot of components, not only atomic ones but also the most primitive ones like `Box,` `Stack,` and `Grid,` which is a regular `<div>` with some predefined display properties.
+The whole Material Design system provides a lot of components, not only atomic ones but also the most primitive ones like `Box`, `Stack` and `Grid` which is a regular `<div>` with some predefined display properties.
 
 The application uses only atomic components (such as Buttons, Inputs, etc.) and some more complete which are not easy to implement from scratch (like ColorPicker or Menu). The primary scaffold is based on the native `div` elements and corresponding CSS styles.
 
